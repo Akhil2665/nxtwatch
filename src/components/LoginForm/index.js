@@ -61,13 +61,8 @@ class LoginForm extends Component {
   }
 
   render() {
-    const {
-      username,
-      password,
-      errorMsg,
-      showSubmitError,
-      showPassword,
-    } = this.state
+    const {username, password, errorMsg, showSubmitError, showPassword} =
+      this.state
     const jwtToken = Cookies.get('jwt_token')
     const passwordType = showPassword ? 'text' : 'password'
     console.log(passwordType)

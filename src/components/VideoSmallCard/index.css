@@ -1,0 +1,36 @@
+.views-and-date-container-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+.video-details {
+  color: black;
+  line-height: 0cm;
+  width: 80%;
+}
+.video-image-content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+}
+.video-image-list-item {
+  min-height: 240px;
+  width: 280px;
+  box-shadow: 2px 2px 2px 2px brown;
+  margin-bottom: 30px;
+  margin-right: 8px;
+}
+.video-image {
+  height: 120px;
+  width: 100%;
+}
+.video-heading {
+  font-size: 14px;
+}
+.channel-logo {
+  height: 30px;
+  width: 30px;
+}

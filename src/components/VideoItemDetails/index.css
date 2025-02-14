@@ -1,0 +1,28 @@
+.video-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.channel-details-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 30%;
+}
+.video-full-details-container {
+  padding: 20px;
+}
+
+.views-and-date-container {
+  width: 50%;
+  font-weight: 200;
+}
+.video-item-details-container {
+  width: 100%;
+  flex-grow: 1;
+}
+.video-container {
+  width: 90%;
+}

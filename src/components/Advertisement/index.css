@@ -1,0 +1,44 @@
+.ad-container {
+  background-image: url(https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png);
+  background-size: contain;
+  height: 180px;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  margin: 30px;
+  box-shadow: 2px 4px 4px 2px brown;
+}
+.get-now-button {
+  background-color: transparent;
+  border: 2px solid lightblue;
+
+  padding: 8px 24px;
+}
+.ad-heading {
+  font-size: 24px;
+}
+.logo-close-icon-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+.close-icon-button {
+  background-color: transparent;
+  border: none;
+}
+.close-icon {
+  width: 30px;
+  height: 30px;
+}
+.close-icon:hover {
+  scale: 1.2;
+}
+.ad-logo {
+  height: 40px;
+  width: 120px;
+}
