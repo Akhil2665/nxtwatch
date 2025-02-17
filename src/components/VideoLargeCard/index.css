@@ -1,0 +1,10 @@
+.trending-video-image-list-item {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 240px;
+}
+.video-large-image {
+  height: 220px;
+  width: 50%;
+}

@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom'
 
 import './index.css'
 
-const VideoImageCard = props => {
+const VideoLargeImageCard = props => {
   const {videoDetails} = props
   const {id, channel, title, thumbnailUrl, viewCount, publishedAt} =
     videoDetails
@@ -10,8 +10,12 @@ const VideoImageCard = props => {
   return (
     <>
       <Link to={`/videos/${id}`} className="link-item">
-        <li className="video-image-list-item">
-          <img src={thumbnailUrl} alt="thumbnail" className="video-image" />
+        <li className="trending-video-image-list-item">
+          <img
+            src={thumbnailUrl}
+            alt="thumbnail"
+            className="video-large-image"
+          />
           <div className="video-image-content-container">
             <img src={profileImageUrl} alt="" className="channel-logo" />
             <div className="video-details">
@@ -29,4 +33,4 @@ const VideoImageCard = props => {
   )
 }
 
-export default VideoImageCard
+export default VideoLargeImageCard

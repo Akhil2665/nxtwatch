@@ -51,14 +51,19 @@ class Home extends Component {
         name: eachVideo.channel.name,
         profileImageUrl: eachVideo.channel.profile_image_url,
       },
-      view_count: eachVideo.view_count,
-      published_at: eachVideo.published_at,
+      viewCount: eachVideo.view_count,
+      publishedAt: eachVideo.published_at,
     }))
     if (response.ok) {
       console.log('suucesss', updatedData)
-      this.setState({videosList: updatedData})
+      this.setState({
+        videosList: updatedData,
+        apiStatus: apiStatusConstants.success,
+      })
     } else {
-      console.log('failure')
+      this.setState({
+        apiStatus: apiStatusConstants.failure,
+      })
     }
   }
 
@@ -75,18 +80,9 @@ class Home extends Component {
             <Header />
             <Advertisement />
             <ul className="video-list-container">
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
-              <VideoImageCard />
+              {videosList.map(videoDetails => (
+                <VideoImageCard videoDetails={videoDetails} />
+              ))}
             </ul>
             <VideoItemDetails />
           </div>

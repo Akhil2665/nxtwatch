@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 import './index.css'
 
 const Sidebar = () => (
@@ -7,10 +9,28 @@ const Sidebar = () => (
       alt="logo"
       className="logo"
     />
-    <p>Home</p>
-    <p>Trending</p>
-    <p>Gaming</p>
-    <p>Saved Videos</p>
+    <ul className="sidebar-list">
+      <li>
+        <Link to="/" className="link-item">
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link to="/trending" className="link-item">
+          Trending
+        </Link>
+      </li>
+      <li>
+        <Link to="/gaming" className="link-item">
+          Gaming
+        </Link>
+      </li>
+      <li>
+        <Link to="/savedvideos" className="link-item">
+          Saved Videos
+        </Link>
+      </li>
+    </ul>
   </div>
 )
 

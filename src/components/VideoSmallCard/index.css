@@ -7,7 +7,7 @@
 }
 .video-details {
   color: black;
-  line-height: 0cm;
+  line-height: 1em;
   width: 80%;
 }
 .video-image-content-container {
@@ -29,8 +29,14 @@
 }
 .video-heading {
   font-size: 14px;
+  font-weight: 400;
 }
 .channel-logo {
   height: 30px;
   width: 30px;
+}
+.link-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
 }

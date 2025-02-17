@@ -1,0 +1,8 @@
+.game-video-image-list-item {
+  display: flex;
+  flex-direction: column;
+}
+.game-desktop-image {
+  height: 220px;
+  width: 120px;
+}

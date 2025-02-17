@@ -3,7 +3,7 @@ import {Route, Switch, Redirect} from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
-// import Products from './components/Products'
+import Trending from './components/Trending'
 // import ProductItemDetails from './components/ProductItemDetails'
 // import Cart from './components/Cart'
 import NotFound from './components/NotFound'
@@ -29,6 +29,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/login" component={LoginForm} />
           <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/trending" component={Trending} />
 
           <Route path="/not-found" component={NotFound} />
           <Redirect to="not-found" />
