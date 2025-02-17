@@ -1,8 +1,15 @@
 .game-video-image-list-item {
   display: flex;
   flex-direction: column;
+  color: #000000;
 }
 .game-desktop-image {
-  height: 220px;
-  width: 120px;
+  height: 340px;
+  width: 220px;
+}
+.game-title {
+  font-size: 14px;
+}
+.game-views {
+  font-size: 12px;
 }

@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 
 import Header from '../Header'
 import Sidebar from '../Sidebar'
-import VideoLargeImageCard from '../VideoLargeCard'
+import GamingImageCard from '../GamingImageCard'
 
 import './index.css'
 
@@ -72,9 +72,9 @@ class Gaming extends Component {
           <div className="home-content">
             <Header />
 
-            <ul className="trending-video-list-container">
+            <ul className="gaming-video-list-container">
               {gamingvideosList.map(videoDetails => (
-                <VideoLargeImageCard videoDetails={videoDetails} />
+                <GamingImageCard videoDetails={videoDetails} />
               ))}
             </ul>
           </div>
