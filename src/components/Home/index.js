@@ -6,7 +6,7 @@ import Header from '../Header'
 import Sidebar from '../Sidebar'
 import Advertisement from '../Advertisement'
 import VideoImageCard from '../VideoSmallCard'
-import VideoItemDetails from '../VideoItemDetails'
+// import VideoItemDetails from '../VideoItemDetails'
 
 import './index.css'
 
@@ -81,10 +81,12 @@ class Home extends Component {
             <Advertisement />
             <ul className="video-list-container">
               {videosList.map(videoDetails => (
-                <VideoImageCard videoDetails={videoDetails} />
+                <VideoImageCard
+                  videoDetails={videoDetails}
+                  key={videoDetails.id}
+                />
               ))}
             </ul>
-            <VideoItemDetails />
           </div>
         </div>
       </>

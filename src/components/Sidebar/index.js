@@ -26,11 +26,40 @@ const Sidebar = () => (
         </Link>
       </li>
       <li>
-        <Link to="/savedvideos" className="link-item">
+        <Link to="/saved-videos" className="link-item">
           Saved Videos
         </Link>
       </li>
     </ul>
+    <div className="social-container">
+      <h1>Contact Us</h1>
+      <ul className="image-icon-list">
+        <li className="image-icon-item">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
+            alt="facebook logo"
+            className="icon-logo"
+          />
+        </li>
+        <li className="image-icon-item">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
+            alt="twitter logo"
+            className="icon-logo"
+          />
+        </li>
+        <li className="image-icon-item">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
+            alt="linked in logo"
+            className="icon-logo"
+          />
+        </li>
+      </ul>
+      <p className="app-info">
+        Enjoy! Now to see your channels and recommedations!
+      </p>
+    </div>
   </div>
 )
 

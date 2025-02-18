@@ -5,8 +5,8 @@ import LoginForm from './components/LoginForm'
 import Home from './components/Home'
 import Trending from './components/Trending'
 import Gaming from './components/Gaming'
-// import ProductItemDetails from './components/ProductItemDetails'
-// import Cart from './components/Cart'
+import VideoItemDetails from './components/VideoItemDetails'
+import SavedVideos from './components/SavedVideos'
 import NotFound from './components/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import VideosContext from './context/VideosContext'
@@ -32,7 +32,12 @@ class App extends Component {
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/trending" component={Trending} />
           <ProtectedRoute exact path="/gaming" component={Gaming} />
-
+          <ProtectedRoute
+            exact
+            path="/videos/:id"
+            component={VideoItemDetails}
+          />
+          <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
           <Route path="/not-found" component={NotFound} />
           <Redirect to="not-found" />
         </Switch>

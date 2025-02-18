@@ -22,3 +22,19 @@ li {
   text-decoration: none;
   outline: none;
 }
+.icon-logo {
+  height: 32px;
+  width: 32px;
+}
+.image-icon-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.app-info {
+  font-size: 12px;
+  width: 100%;
+}
