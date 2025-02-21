@@ -43,10 +43,4 @@ class App extends Component {
 
 export default App
 
-// <ProtectedRoute exact path="/products" component={Products} />
-//           <ProtectedRoute
-//             exact
-//             path="/products/:id"
-//             component={ProductItemDetails}
-//           />
-//           <ProtectedRoute exact path="/cart" component={Cart} />
+
