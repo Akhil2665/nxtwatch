@@ -14,11 +14,14 @@
 .video-full-details-container {
   padding: 20px;
 }
+button {
+  width: 120px;
+}
 .video-reaction-icon {
   height: 28px;
   width: 28px;
   margin-right: 4px;
-  color: green;
+  color: #64748b;
 }
 .video-reaction-icon:hover {
   scale: 1.3;

@@ -1,18 +1,17 @@
-/* .login-form-container {
+.login-form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 80vh;
   width: 90%;
   max-width: 1110px;
   margin: auto;
-} */
+}
 
 @media screen and (min-width: 992px) {
   .login-form-container {
     flex-direction: row;
-    justify-content: space-around;
   }
 }
 .login-page-container {
@@ -28,7 +27,7 @@
 
 .website-logo {
   width: 165px;
-  margin-top: 50px;
+  margin-top: 10px;
   margin-bottom: 35px;
 }
 
@@ -54,6 +53,7 @@
 @media screen and (min-width: 992px) {
   .login-form-container {
     width: 350px;
+    height: 500px;
     flex-shrink: 0;
     box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
     padding: 64px 48px 64px 48px;

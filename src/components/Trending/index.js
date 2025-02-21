@@ -68,7 +68,7 @@ class Trending extends Component {
 
     return (
       <>
-        <div className="home-container">
+        <div className="home-container" data-testid="trending">
           <div className="sidebar-container">
             <Sidebar />
           </div>

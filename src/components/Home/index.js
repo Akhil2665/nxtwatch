@@ -2,6 +2,8 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 
+import {FaSearch} from 'react-icons/fa'
+
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 import Advertisement from '../Advertisement'
@@ -22,6 +24,7 @@ class Home extends Component {
     apiStatus: apiStatusConstants.initial,
     videosList: [],
     showAd: true,
+    searchInput: '',
   }
 
   componentDidMount() {
@@ -33,8 +36,9 @@ class Home extends Component {
       apiStatus: apiStatusConstants.inProgress,
     })
     const jwtToken = Cookies.get('jwt_token')
+    const {searchInput} = this.state
 
-    const apiUrl = `https://apis.ccbp.in/videos/all?search=`
+    const apiUrl = `https://apis.ccbp.in/videos/all?search=${searchInput}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -66,6 +70,10 @@ class Home extends Component {
     }
   }
 
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
   onClickRemoveAd = () => {
     this.setState({showAd: false})
   }
@@ -75,7 +83,7 @@ class Home extends Component {
 
     return (
       <>
-        <div className="home-container">
+        <div className="home-container" data-testid="home">
           <Sidebar />
 
           <div className="home-content">
@@ -83,6 +91,21 @@ class Home extends Component {
             {showAd ? (
               <Advertisement onClickRemoveAd={this.onClickRemoveAd} />
             ) : null}
+            <div className="search-container">
+              <input
+                type="search"
+                onChange={this.onChangeSearchInput}
+                className="search-input"
+              />
+              <button
+                type="button"
+                onClick={this.getData}
+                className="search-btn"
+                data-testid="searchButton"
+              >
+                <FaSearch className="search-icon" />
+              </button>
+            </div>
             <ul className="video-list-container">
               {videosList.map(videoDetails => (
                 <VideoImageCard

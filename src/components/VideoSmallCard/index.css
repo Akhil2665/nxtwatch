@@ -7,8 +7,8 @@
 }
 .video-details {
   color: black;
-  line-height: 1em;
-  width: 80%;
+  line-height: 1.5em;
+  width: 95%;
 }
 .video-image-content-container {
   display: flex;
@@ -17,11 +17,12 @@
   padding: 8px;
 }
 .video-image-list-item {
-  min-height: 240px;
+  height: 340px;
   width: 280px;
+  max-height: 350px;
   box-shadow: 2px 2px 2px 2px brown;
-  margin-bottom: 30px;
-  margin-right: 8px;
+  margin-bottom: 44px;
+  margin-right: 20px;
 }
 .video-image {
   height: 120px;

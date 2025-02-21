@@ -1,0 +1,18 @@
+.saved-video-heading {
+  font-size: 26px;
+  font-weight: 600;
+}
+.saved-video-channel-name {
+  font-size: 16px;
+  font-weight: 300;
+}
+.saved-video-large-image {
+  height: 200px;
+  width: 260px;
+}
+.saved-video-image-list-item {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 240px;
+}

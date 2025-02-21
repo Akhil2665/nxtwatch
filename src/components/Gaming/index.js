@@ -63,7 +63,7 @@ class Gaming extends Component {
 
     return (
       <>
-        <div className="home-container">
+        <div className="home-container" data-testid="gaming">
           <div className="sidebar-container">
             <Sidebar />
           </div>

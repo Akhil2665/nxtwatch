@@ -27,7 +27,7 @@ class VideoItemDetails extends Component {
     apiStatus: apiStatusConstants.initial,
     videoItemDetails: [],
     savedVideosList: [],
-    showSaveText: '',
+    showSaveText: 'Save',
   }
 
   componentDidMount() {
@@ -90,30 +90,26 @@ class VideoItemDetails extends Component {
     }
   }
 
-  onClickedSaveVideo = () => {
-    const {savedVideosList, videoItemDetails} = this.state
+  onClickedSaveVideo = onChangeSaveVideo => {
+    const {videoItemDetails} = this.state
     const {videoDetails} = videoItemDetails
-    const {id} = videoDetails
-    const isVideoAlreadySaved = savedVideosList.find(
-      eachVideo => eachVideo.id === id,
-    )
-    console.log(videoDetails, typeof videoDetails, 'videos in')
-    if (isVideoAlreadySaved) {
-      const updatedVideoList = savedVideosList.filter(
-        eachVideoObj => eachVideoObj.id !== id,
+
+    this.setState(prevState => {
+      const isSaved = prevState.savedVideosList.some(
+        video => video.id === videoDetails.id,
       )
-      this.setState({
-        savedVideosList: updatedVideoList,
-        showSaveText: 'video Removed',
-        isVideoSaved: false,
-      })
-    } else {
-      this.setState(prevState => ({
-        savedVideosList: [...prevState.savedVideosList, videoDetails],
-        showSaveText: 'Video saved',
-        isVideoSaved: true,
-      }))
-    }
+
+      return {
+        savedVideosList: isSaved
+          ? prevState.savedVideosList.filter(
+              video => video.id !== videoDetails.id,
+            )
+          : [...prevState.savedVideosList, videoDetails],
+        showSaveText: isSaved ? 'Save' : 'Saved',
+      }
+    })
+
+    onChangeSaveVideo(videoDetails)
   }
 
   render() {
@@ -124,67 +120,109 @@ class VideoItemDetails extends Component {
       return <p>Loading...</p>
     }
 
-    const {videoDetails} = videoItemDetails
-    const {title, videoUrl, channel, viewCount, description, publishedAt} =
-      videoDetails
-    const {name, profileImageUrl, subscriberCount} = channel
-
     return (
-      <VideoContext.Provider
-        value={{
-          savedVideosList,
-        }}
-      >
-        <div className="home-container">
-          <Sidebar />
+      <VideoContext.Consumer>
+        {value => {
+          const {onChangeSaveVideo} = value
+          const {videoDetails} = videoItemDetails
+          const {
+            title,
+            videoUrl,
+            channel,
+            viewCount,
+            description,
+            publishedAt,
+          } = videoDetails
+          const {name, profileImageUrl, subscriberCount} = channel
 
-          <div className="home-content">
-            <Header />
-            <div className="video-item-details-container">
-              <div className="video-container">
-                <ReactPlayer url={videoUrl} controls />
-              </div>
-              <div className="video-full-details-container">
-                <h1 className="video-title-video-item">{title}</h1>
-                <div className="views-and-date-container">
-                  <p className="views">{viewCount} views</p>
-                  <p className="ago-years">{publishedAt} years</p>
-                </div>
-                <div className="video-buttons-container">
-                  <button type="button" className="video-reaction-btn">
-                    <BiLike className="video-reaction-icon" /> Like
-                  </button>
-                  <button type="button" className="video-reaction-btn">
-                    <BiDislike className="video-reaction-icon" /> Dislike
-                  </button>
-                  <button
-                    type="button"
-                    className="video-reaction-btn"
-                    onClick={this.onClickedSaveVideo}
+          return (
+            <>
+              <div className="home-container">
+                <Sidebar />
+
+                <div className="home-content">
+                  <Header />
+                  <div
+                    className="video-item-details-container"
+                    data-testid="videoItemDetails "
                   >
-                    <FaSave className="video-reaction-icon" /> Save{' '}
-                    <span className="saved-info">{showSaveText}</span>
-                  </button>
-                </div>
-                <div className="channel-details-container">
-                  <img
-                    src={profileImageUrl}
-                    alt="channel"
-                    className="channel-logo-in-details"
-                  />
-                  <div className="channel-details">
-                    <p className="channel-name">{name}</p>
-                    <p className="subscribers">{subscriberCount} subscribers</p>
+                    <div className="video-container">
+                      <ReactPlayer url={videoUrl} controls />
+                    </div>
+                    <div className="video-full-details-container">
+                      <p className="video-title-video-item">{title}</p>
+                      <div className="views-and-date-container">
+                        <p className="views">{viewCount} views</p>
+                        <p className="ago-years">{publishedAt} years</p>
+                      </div>
+                      <div className="video-buttons-container">
+                        <button type="button" className="video-reaction-btn">
+                          <BiLike className="video-reaction-icon" /> Like
+                        </button>
+                        <button type="button" className="video-reaction-btn">
+                          <BiDislike className="video-reaction-icon" /> Dislike
+                        </button>
+                        <button
+                          type="button"
+                          className="video-reaction-btn"
+                          onClick={() =>
+                            this.onClickedSaveVideo(onChangeSaveVideo)
+                          }
+                        >
+                          <FaSave className="video-reaction-icon" />{' '}
+                          {showSaveText}
+                        </button>
+                      </div>
+                      <div className="channel-details-container">
+                        <img
+                          src={profileImageUrl}
+                          alt="channel logo"
+                          className="channel-logo-in-details"
+                        />
+                        <div className="channel-details">
+                          <p className="channel-name">{name}</p>
+                          <p className="subscribers">
+                            {subscriberCount} subscribers
+                          </p>
+                        </div>
+                      </div>
+                      <p className="about-channel">{description}</p>
+                    </div>
                   </div>
                 </div>
-                <p className="about-channel">{description}</p>
               </div>
-            </div>
-          </div>
-        </div>
-      </VideoContext.Provider>
+            </>
+          )
+        }}
+      </VideoContext.Consumer>
     )
   }
 }
 
 export default VideoItemDetails
+
+// onClickedSaveVideo = () => {
+//   const {savedVideosList, videoItemDetails} = this.state
+//   const {videoDetails} = videoItemDetails
+//   const {id} = videoDetails
+//   const isVideoAlreadySaved = savedVideosList.find(
+//     eachVideo => eachVideo.id === id,
+//   )
+//   console.log(videoDetails, typeof videoDetails, 'videos in')
+//   if (isVideoAlreadySaved) {
+//     const updatedVideoList = savedVideosList.filter(
+//       eachVideoObj => eachVideoObj.id !== id,
+//     )
+//     this.setState({
+//       savedVideosList: updatedVideoList,
+//       showSaveText: 'video Removed',
+//       isVideoSaved: false,
+//     })
+//   } else {
+//     this.setState(prevState => ({
+//       savedVideosList: [...prevState.savedVideosList, videoDetails],
+//       showSaveText: 'Video saved',
+//       isVideoSaved: true,
+//     }))
+//   }
+// }

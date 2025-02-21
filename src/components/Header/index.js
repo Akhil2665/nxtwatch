@@ -1,7 +1,8 @@
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 
 import Cookies from 'js-cookie'
 import {IoMenu} from 'react-icons/io5'
+import {BsMoon, BsBrightnessHigh} from 'react-icons/bs'
 
 // import {CiLight} from 'react-icons/ci'
 
@@ -35,11 +36,13 @@ const Header = props => {
   return (
     <nav className="nav-header">
       <div className="mobile-navbar">
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png "
-          alt="nav home"
-          className="nav-bar-img-mobile"
-        />
+        <Link to="/">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png "
+            alt="website logo"
+            className="nav-bar-img-mobile"
+          />
+        </Link>
         <button type="button" className="nav-item-button">
           <IoMenu />
         </button>
@@ -52,16 +55,12 @@ const Header = props => {
       </div>
       <div className="desktop-navbar">
         <>
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-icon.png"
-            alt="nav home"
-            className="nav-bar-img"
-          />
+          <BsMoon />
         </>
         <>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png "
-            alt="nav home"
+            alt="profile"
             className="nav-bar-img"
           />
         </>

@@ -6,20 +6,23 @@ const Advertisement = props => {
   const removeAd = () => onClickRemoveAd()
 
   return (
-    <div className="ad-container">
+    <div className="ad-container" data-testid="banner">
       <div className="logo-close-icon-container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-          alt="web logo"
+          alt="nxt watch logo"
           className="ad-logo"
         />
-        <button type="button" className="close-icon-button" onClick={removeAd}>
+        <button
+          type="button"
+          className="close-icon-button"
+          onClick={removeAd}
+          data-testid="close"
+        >
           <IoCloseCircleOutline className="close-icon" />
         </button>
       </div>
-      <h1 className="ad-heading">
-        Buy Nxt Watch Premium prepaid plans with UPI
-      </h1>
+      <p className="ad-heading">Buy Nxt Watch Premium prepaid plans with UPI</p>
       <button className="get-now-button" type="button">
         GET IT NOW
       </button>

@@ -34,7 +34,7 @@ const Sidebar = () => (
       </ul>
     </div>
     <div className="social-container">
-      <h1 className="contact-heading">Contact Us</h1>
+      <p className="contact-heading">Contact Us</p>
       <ul className="image-icon-list">
         <li className="image-icon-item">
           <img

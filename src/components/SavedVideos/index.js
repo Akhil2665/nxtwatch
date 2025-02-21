@@ -1,10 +1,6 @@
-// import {Link} from 'react-router-dom'
-
-import Cookies from 'js-cookie'
-
 import Header from '../Header'
 import Sidebar from '../Sidebar'
-import VideoLargeImageCard from '../VideoLargeCard'
+import SavedVideoImageCard from '../SavedVideoImageCard'
 import VideoContext from '../../context/VideoContext'
 
 import './index.css'
@@ -21,7 +17,22 @@ const SavedVideos = () => (
     {value => {
       const {savedVideosList} = value
       console.log(savedVideosList)
-      const savedVideoListView = 'savedVideoList'
+      const savedVideoListView = savedVideosList.map(videoDetails => (
+        <SavedVideoImageCard videoDetails={videoDetails} />
+      ))
+      const noSavedVideosView = () => (
+        <div className="no-saved-videos-container" data-testid="savedVideos">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
+            alt="no saved videos"
+            className="not-found-img"
+          />
+          <h1 className="no-result-heading">No Saved Videos Found</h1>
+          <p className="no-result-description">
+            You can save your videos while watching them
+          </p>
+        </div>
+      )
       return (
         <>
           <div className="home-container">
@@ -32,7 +43,9 @@ const SavedVideos = () => (
               <Header />
 
               <ul className="trending-video-list-container">
-                {savedVideosList.length ? savedVideoListView : null}
+                {savedVideosList.length !== 0
+                  ? savedVideoListView
+                  : noSavedVideosView()}
               </ul>
             </div>
           </div>
@@ -50,7 +63,3 @@ export default SavedVideos
 //       const cartValueList = cartList.map(
 //         eachItem => eachItem.price * eachItem.quantity,
 //       )
-
-// savedVideoList.map(videoDetails => (
-//         <VideoLargeImageCard videoDetails={videoDetails} />
-//       ))

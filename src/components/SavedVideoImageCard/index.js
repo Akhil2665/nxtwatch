@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom'
 
 import './index.css'
 
-const VideoImageCard = props => {
+const SavedVideoImageCard = props => {
   const {videoDetails} = props
   const {
     id,
@@ -12,25 +12,20 @@ const VideoImageCard = props => {
     viewCount,
     publishedAt,
   } = videoDetails
-  const {name, profileImageUrl} = channel
+  const {name} = channel
   return (
     <>
       <Link to={`/videos/${id}`} className="link-item">
-        <li className="video-image-list-item">
+        <li className="saved-video-image-list-item">
           <img
             src={thumbnailUrl}
             alt="video thumbnail"
-            className="video-image"
+            className="saved-video-large-image"
           />
           <div className="video-image-content-container">
-            <img
-              src={profileImageUrl}
-              alt="channel logo"
-              className="channel-logo"
-            />
             <div className="video-details">
-              <h1 className="video-heading">{title}</h1>
-              <p className="channel-name">{name}</p>
+              <h1 className="saved-video-heading">{title}</h1>
+              <p className="saved-video-channel-name">{name}</p>
               <div className="views-and-date-container-card">
                 <p className="views">{viewCount} views</p>
                 <p className="ago-years">{publishedAt}</p>
@@ -43,4 +38,4 @@ const VideoImageCard = props => {
   )
 }
 
-export default VideoImageCard
+export default SavedVideoImageCard
