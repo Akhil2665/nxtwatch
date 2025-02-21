@@ -22,7 +22,6 @@ class Gaming extends Component {
   }
 
   componentDidMount() {
-    console.log('called diid mount')
     this.getData()
   }
 
@@ -48,7 +47,6 @@ class Gaming extends Component {
       viewCount: eachVideo.view_count,
     }))
     if (response.ok) {
-      console.log('suucesss', updatedData)
       this.setState({
         gamingvideosList: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -62,7 +60,7 @@ class Gaming extends Component {
 
   render() {
     const {gamingvideosList} = this.state
-    console.log(gamingvideosList)
+
     return (
       <>
         <div className="home-container">
@@ -74,7 +72,10 @@ class Gaming extends Component {
 
             <ul className="gaming-video-list-container">
               {gamingvideosList.map(videoDetails => (
-                <GamingImageCard videoDetails={videoDetails} />
+                <GamingImageCard
+                  videoDetails={videoDetails}
+                  key={videoDetails.id}
+                />
               ))}
             </ul>
           </div>

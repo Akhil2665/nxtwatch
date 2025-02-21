@@ -1,10 +1,11 @@
 // import {Link} from 'react-router-dom'
-import {Component} from 'react'
+
 import Cookies from 'js-cookie'
 
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 import VideoLargeImageCard from '../VideoLargeCard'
+import VideoContext from '../../context/VideoContext'
 
 import './index.css'
 
@@ -15,78 +16,41 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class SavedVideos extends Component {
-  state = {
-    apiStatus: apiStatusConstants.initial,
-    trendingvideosList: [],
-  }
+const SavedVideos = () => (
+  <VideoContext.Consumer>
+    {value => {
+      const {savedVideosList} = value
+      console.log(savedVideosList)
+      const savedVideoListView = 'savedVideoList'
+      return (
+        <>
+          <div className="home-container">
+            <div className="sidebar-container">
+              <Sidebar />
+            </div>
+            <div className="home-content">
+              <Header />
 
-  componentDidMount() {
-    console.log('called diid mount')
-    this.getData()
-  }
-
-  getData = async () => {
-    this.setState({
-      apiStatus: apiStatusConstants.inProgress,
-    })
-    const jwtToken = Cookies.get('jwt_token')
-
-    const apiUrl = `https://apis.ccbp.in/videos/trending`
-    const options = {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      method: 'GET',
-    }
-    const response = await fetch(apiUrl, options)
-    const jsonData = await response.json()
-    const updatedData = jsonData.videos.map(eachVideo => ({
-      id: eachVideo.id,
-      title: eachVideo.title,
-      thumbnailUrl: eachVideo.thumbnail_url,
-      channel: {
-        name: eachVideo.channel.name,
-        profileImageUrl: eachVideo.channel.profile_image_url,
-      },
-      viewCount: eachVideo.view_count,
-      publishedAt: eachVideo.published_at,
-    }))
-    if (response.ok) {
-      console.log('suucesss', updatedData)
-      this.setState({
-        trendingvideosList: updatedData,
-        apiStatus: apiStatusConstants.success,
-      })
-    } else {
-      this.setState({
-        apiStatus: apiStatusConstants.failure,
-      })
-    }
-  }
-
-  render() {
-    const {trendingvideosList} = this.state
-    console.log(trendingvideosList)
-    return (
-      <>
-        <div className="home-container">
-          <div className="sidebar-container">
-            <Sidebar />
+              <ul className="trending-video-list-container">
+                {savedVideosList.length ? savedVideoListView : null}
+              </ul>
+            </div>
           </div>
-          <div className="home-content">
-            <Header />
-
-            <ul className="trending-video-list-container">
-              {trendingvideosList.map(videoDetails => (
-                <VideoLargeImageCard videoDetails={videoDetails} />
-              ))}
-            </ul>
-          </div>
-        </div>
-      </>
-    )
-  }
-}
+        </>
+      )
+    }}
+  </VideoContext.Consumer>
+)
 
 export default SavedVideos
+
+// const onClickOnRemoveAll = () => removeAllCartItems()
+//       const cartCount = Array.isArray(cartList) ? cartList.length : 0
+//       const showEmptyView = cartCount === 0
+//       const cartValueList = cartList.map(
+//         eachItem => eachItem.price * eachItem.quantity,
+//       )
+
+// savedVideoList.map(videoDetails => (
+//         <VideoLargeImageCard videoDetails={videoDetails} />
+//       ))

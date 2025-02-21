@@ -22,7 +22,6 @@ class Trending extends Component {
   }
 
   componentDidMount() {
-    console.log('called diid mount')
     this.getData()
   }
 
@@ -53,7 +52,6 @@ class Trending extends Component {
       publishedAt: eachVideo.published_at,
     }))
     if (response.ok) {
-      console.log('suucesss', updatedData)
       this.setState({
         trendingvideosList: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -67,7 +65,7 @@ class Trending extends Component {
 
   render() {
     const {trendingvideosList} = this.state
-    console.log(trendingvideosList)
+
     return (
       <>
         <div className="home-container">
@@ -79,7 +77,10 @@ class Trending extends Component {
 
             <ul className="trending-video-list-container">
               {trendingvideosList.map(videoDetails => (
-                <VideoLargeImageCard videoDetails={videoDetails} />
+                <VideoLargeImageCard
+                  videoDetails={videoDetails}
+                  key={videoDetails.id}
+                />
               ))}
             </ul>
           </div>

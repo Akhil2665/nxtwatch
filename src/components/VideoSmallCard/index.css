@@ -40,3 +40,6 @@
   flex-direction: column;
   text-decoration: none;
 }
+.channel-name {
+  font-weight: 600;
+}

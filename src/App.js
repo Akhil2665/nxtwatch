@@ -9,7 +9,6 @@ import VideoItemDetails from './components/VideoItemDetails'
 import SavedVideos from './components/SavedVideos'
 import NotFound from './components/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
-import VideosContext from './context/VideosContext'
 
 import './App.css'
 
@@ -22,11 +21,7 @@ class App extends Component {
     const {savedVideosList} = this.state
 
     return (
-      <VideosContext.Provider
-        value={{
-          savedVideosList,
-        }}
-      >
+      <>
         <Switch>
           <Route exact path="/login" component={LoginForm} />
           <ProtectedRoute exact path="/" component={Home} />
@@ -41,7 +36,7 @@ class App extends Component {
           <Route path="/not-found" component={NotFound} />
           <Redirect to="not-found" />
         </Switch>
-      </VideosContext.Provider>
+      </>
     )
   }
 }

@@ -21,10 +21,10 @@ class Home extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     videosList: [],
+    showAd: true,
   }
 
   componentDidMount() {
-    console.log('called diid mount')
     this.getData()
   }
 
@@ -55,7 +55,6 @@ class Home extends Component {
       publishedAt: eachVideo.published_at,
     }))
     if (response.ok) {
-      console.log('suucesss', updatedData)
       this.setState({
         videosList: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -67,18 +66,23 @@ class Home extends Component {
     }
   }
 
+  onClickRemoveAd = () => {
+    this.setState({showAd: false})
+  }
+
   render() {
-    const {videosList} = this.state
-    console.log(videosList)
+    const {videosList, showAd} = this.state
+
     return (
       <>
         <div className="home-container">
-          <div className="sidebar-container">
-            <Sidebar />
-          </div>
+          <Sidebar />
+
           <div className="home-content">
             <Header />
-            <Advertisement />
+            {showAd ? (
+              <Advertisement onClickRemoveAd={this.onClickRemoveAd} />
+            ) : null}
             <ul className="video-list-container">
               {videosList.map(videoDetails => (
                 <VideoImageCard

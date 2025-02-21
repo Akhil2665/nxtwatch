@@ -3,8 +3,6 @@ import {withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {IoMenu} from 'react-icons/io5'
 
-import VideosContext from '../../context/VideosContext'
-
 // import {CiLight} from 'react-icons/ci'
 
 import './index.css'

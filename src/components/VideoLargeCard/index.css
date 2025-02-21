@@ -8,3 +8,7 @@
   height: 220px;
   width: 50%;
 }
+.channel-name {
+  font-weight: 600;
+  font-size: 24px;
+}
