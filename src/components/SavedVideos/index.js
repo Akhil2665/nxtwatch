@@ -15,11 +15,13 @@ const apiStatusConstants = {
 const SavedVideos = () => (
   <VideoContext.Consumer>
     {value => {
-      const {savedVideosList} = value
+      const {savedVideosList, removeAllSavedVideos} = value
       console.log(savedVideosList)
       const savedVideoListView = savedVideosList.map(videoDetails => (
         <SavedVideoImageCard videoDetails={videoDetails} />
       ))
+      const onClickedRemoveAll = () => removeAllSavedVideos()
+
       const noSavedVideosView = () => (
         <div className="no-saved-videos-container" data-testid="savedVideos">
           <img
@@ -41,6 +43,13 @@ const SavedVideos = () => (
             </div>
             <div className="home-content">
               <Header />
+              <button
+                type="button"
+                className="remove-saved-vid-btn"
+                onClick={onClickedRemoveAll}
+              >
+                Remove All Saved Videos
+              </button>
 
               <ul className="trending-video-list-container">
                 {savedVideosList.length !== 0
@@ -56,10 +65,3 @@ const SavedVideos = () => (
 )
 
 export default SavedVideos
-
-// const onClickOnRemoveAll = () => removeAllCartItems()
-//       const cartCount = Array.isArray(cartList) ? cartList.length : 0
-//       const showEmptyView = cartCount === 0
-//       const cartValueList = cartList.map(
-//         eachItem => eachItem.price * eachItem.quantity,
-//       )

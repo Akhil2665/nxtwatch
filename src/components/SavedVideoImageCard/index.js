@@ -4,14 +4,8 @@ import './index.css'
 
 const SavedVideoImageCard = props => {
   const {videoDetails} = props
-  const {
-    id,
-    channel,
-    title,
-    thumbnailUrl,
-    viewCount,
-    publishedAt,
-  } = videoDetails
+  const {id, channel, title, thumbnailUrl, viewCount, publishedAt} =
+    videoDetails
   const {name} = channel
   return (
     <>

@@ -1,6 +1,6 @@
 .nav-header {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
   border-bottom: 1px solid rgb(243, 243, 243);
 }
@@ -10,7 +10,7 @@
 .desktop-navbar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 50%;
 }
 

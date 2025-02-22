@@ -1,8 +1,8 @@
 .ad-container {
   background-image: url(https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png);
-  background-size: contain;
-  min-height: 180px;
-  width: 98%;
+  background-size: cover;
+  min-height: 220px;
+  width: 88%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

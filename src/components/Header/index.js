@@ -15,24 +15,6 @@ const Header = props => {
     history.replace('/login')
   }
 
-  // const renderCartItemsCount = () => (
-  //   <VideosContext.Consumer>
-  //     {value => {
-  //       const {savedVideosList} = value
-  //       const cartItemsCount = savedVideosList.length
-
-  //       return (
-  //         <>
-  //           {cartItemsCount > 0 ? (
-  //             <span className="cart-count-badge">{savedVideosList.length}</span>
-  //           ) : null}
-  //         </>
-  //       )
-
-  //     }}
-  //   </VideosContext.Consumer>
-  // )
-
   return (
     <nav className="nav-header">
       <div className="mobile-navbar">
@@ -55,7 +37,7 @@ const Header = props => {
       </div>
       <div className="desktop-navbar">
         <>
-          <BsMoon />
+          <BsMoon className="" />
         </>
         <>
           <img

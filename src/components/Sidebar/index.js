@@ -1,5 +1,7 @@
 import {Link} from 'react-router-dom'
 
+import {FaHome, FaGamepad, FaHotjar, FaSave} from 'react-icons/fa'
+
 import './index.css'
 
 const Sidebar = () => (
@@ -11,24 +13,24 @@ const Sidebar = () => (
         className="logo"
       />
       <ul className="sidebar-list">
-        <li>
-          <Link to="/" className="link-item">
-            Home
+        <li className="list-item-sidebar">
+          <Link to="/" className="sidebar-link-item">
+            <FaHome className="sidebar-list-icon" /> <p>Home</p>
           </Link>
         </li>
-        <li>
-          <Link to="/trending" className="link-item">
-            Trending
+        <li className="list-item-sidebar">
+          <Link to="/trending" className="sidebar-link-item">
+            <FaHotjar className="sidebar-list-icon" /> <p>Trending</p>
           </Link>
         </li>
-        <li>
-          <Link to="/gaming" className="link-item">
-            Gaming
+        <li className="list-item-sidebar">
+          <Link to="/gaming" className="sidebar-link-item">
+            <FaGamepad className="sidebar-list-icon" /> <p>Gaming</p>
           </Link>
         </li>
-        <li>
-          <Link to="/saved-videos" className="link-item">
-            Saved Videos
+        <li className="list-item-sidebar">
+          <Link to="/saved-videos" className="sidebar-link-item">
+            <FaSave className="sidebar-list-icon" /> <p>Saved Videos</p>
           </Link>
         </li>
       </ul>

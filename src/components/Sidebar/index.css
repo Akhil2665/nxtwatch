@@ -25,9 +25,17 @@ li {
   margin-bottom: 6px;
   font-weight: 600;
 }
-.link-item {
+.sidebar-list-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.sidebar-link-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+  width: 100%;
   text-decoration: none;
   outline: none;
   color: #000000;
@@ -51,4 +59,10 @@ li {
 }
 .contact-heading {
   font-size: 20px;
+}
+.list-item-sidebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
