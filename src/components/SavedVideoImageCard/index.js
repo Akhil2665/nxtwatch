@@ -4,8 +4,14 @@ import './index.css'
 
 const SavedVideoImageCard = props => {
   const {videoDetails} = props
-  const {id, channel, title, thumbnailUrl, viewCount, publishedAt} =
-    videoDetails
+  const {
+    id,
+    channel,
+    title,
+    thumbnailUrl,
+    viewCount,
+    publishedAt,
+  } = videoDetails
   const {name} = channel
   return (
     <>
@@ -18,7 +24,7 @@ const SavedVideoImageCard = props => {
           />
           <div className="video-image-content-container">
             <div className="video-details">
-              <h1 className="saved-video-heading">{title}</h1>
+              <p className="saved-video-heading">{title}</p>
               <p className="saved-video-channel-name">{name}</p>
               <div className="views-and-date-container-card">
                 <p className="views">{viewCount} views</p>

@@ -1,6 +1,7 @@
 // import {Link} from 'react-router-dom'
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import Loader from 'react-loader-spinner'
 
 import {FaSearch} from 'react-icons/fa'
 
@@ -78,8 +79,92 @@ class Home extends Component {
     this.setState({showAd: false})
   }
 
-  render() {
+  noSearchResultView = () => (
+    <div className="no-search-result-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+        className="no-videos-img"
+        alt="no videos"
+      />
+      <h1>No Search results found</h1>
+      <p>Try different key words or remove search filter</p>
+    </div>
+  )
+
+  renderSuccessView = () => {
     const {videosList, showAd} = this.state
+    const getVideoList = () =>
+      videosList.map(videoDetails => (
+        <VideoImageCard videoDetails={videoDetails} key={videoDetails.id} />
+      ))
+
+    return (
+      <>
+        {showAd ? (
+          <div data-testid="banner">
+            <Advertisement onClickRemoveAd={this.onClickRemoveAd} />
+          </div>
+        ) : null}
+        <div className="search-container">
+          <input
+            type="search"
+            onChange={this.onChangeSearchInput}
+            className="search-input"
+          />
+          <button
+            type="button"
+            onClick={this.getData}
+            className="search-btn"
+            data-testid="searchButton"
+          >
+            <FaSearch className="search-icon" />
+          </button>
+        </div>
+        <ul className="video-list-container">
+          {videosList.length > 0 ? getVideoList() : this.noSearchResultView()}
+        </ul>
+      </>
+    )
+  }
+
+  renderLoadingView = () => (
+    <div className="loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    </div>
+  )
+
+  renderFailureView = () => (
+    <div className="failure-view-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+        alt="failure view"
+        className="failure-img"
+      />
+      <h1 className="failure-heading-text">Oops! Something Went Wrong</h1>
+      <p className="failure-description">
+        We are having some trouble processing your request. Please try again.
+      </p>
+      <button className="retry-btn" type="button" onClick={this.getData}>
+        Retry
+      </button>
+    </div>
+  )
+
+  getResult = apiStatus => {
+    switch (apiStatus) {
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
+      case apiStatusConstants.success:
+        return this.renderSuccessView()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
+      default:
+        return null
+    }
+  }
+
+  render() {
+    const {apiStatus} = this.state
 
     return (
       <>
@@ -88,32 +173,7 @@ class Home extends Component {
 
           <div className="home-content">
             <Header />
-            {showAd ? (
-              <Advertisement onClickRemoveAd={this.onClickRemoveAd} />
-            ) : null}
-            <div className="search-container">
-              <input
-                type="search"
-                onChange={this.onChangeSearchInput}
-                className="search-input"
-              />
-              <button
-                type="button"
-                onClick={this.getData}
-                className="search-btn"
-                data-testid="searchButton"
-              >
-                <FaSearch className="search-icon" />
-              </button>
-            </div>
-            <ul className="video-list-container">
-              {videosList.map(videoDetails => (
-                <VideoImageCard
-                  videoDetails={videoDetails}
-                  key={videoDetails.id}
-                />
-              ))}
-            </ul>
+            {this.getResult(apiStatus)}
           </div>
         </div>
       </>

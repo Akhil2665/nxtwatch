@@ -12,7 +12,7 @@ const GamingImageCard = props => {
     <Link to={`/videos/${id}`} className="link-item">
       <li className="game-video-image-list-item">
         <img src={thumbnailUrl} alt={title} className="game-desktop-image" />
-        <h1 className="game-title">{title}</h1>
+        <p className="game-title">{title}</p>
         <p className="game-views">{viewCount} Watching Worldwide</p>
       </li>
     </Link>

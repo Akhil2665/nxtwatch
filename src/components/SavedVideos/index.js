@@ -1,3 +1,5 @@
+import {FaSave} from 'react-icons/fa'
+
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 import SavedVideoImageCard from '../SavedVideoImageCard'
@@ -5,12 +7,12 @@ import VideoContext from '../../context/VideoContext'
 
 import './index.css'
 
-const apiStatusConstants = {
-  initial: 'INITIAL',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-  inProgress: 'IN_PROGRESS',
-}
+// const apiStatusConstants = {
+//   initial: 'INITIAL',
+//   success: 'SUCCESS',
+//   failure: 'FAILURE',
+//   inProgress: 'IN_PROGRESS',
+// }
 
 const SavedVideos = () => (
   <VideoContext.Consumer>
@@ -38,11 +40,14 @@ const SavedVideos = () => (
       return (
         <>
           <div className="home-container">
-            <div className="sidebar-container">
-              <Sidebar />
-            </div>
+            <Sidebar />
+
             <div className="home-content">
               <Header />
+              <div className="section-heading-container">
+                <FaSave className="sidebar-list-icon" />
+                <h1 className="section-hedding">Saved videos</h1>
+              </div>
               <button
                 type="button"
                 className="remove-saved-vid-btn"

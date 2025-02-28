@@ -6,7 +6,7 @@ const Advertisement = props => {
   const removeAd = () => onClickRemoveAd()
 
   return (
-    <div className="ad-container" data-testid="banner">
+    <div className="ad-container">
       <div className="logo-close-icon-container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"

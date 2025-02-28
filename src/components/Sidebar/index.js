@@ -61,7 +61,7 @@ const Sidebar = () => (
         </li>
       </ul>
       <p className="app-info">
-        Enjoy! Now to see your channels and recommedations!
+        Enjoy! Now to see your channels and recommendations!
       </p>
     </div>
   </div>

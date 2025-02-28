@@ -20,3 +20,9 @@
   transition: 0.5s;
   background-color: #ff0b37;
 }
+.no-saved-videos-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

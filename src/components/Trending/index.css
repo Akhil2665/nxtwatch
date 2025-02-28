@@ -4,3 +4,16 @@
   list-style-type: none;
   overflow-x: auto;
 }
+.section-heading-container {
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  height: 80px;
+  width: 100%;
+}

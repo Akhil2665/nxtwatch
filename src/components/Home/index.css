@@ -138,10 +138,39 @@
   scale: 1.1;
   transition: 0.2s;
 }
-
+.no-videos-img {
+  height: 130px;
+  width: 150px;
+}
+.no-search-result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @media screen and (min-width: 768px) {
   .shop-now-button {
     width: 150px;
     font-size: 16px;
+  }
+  .no-videos-img {
+    height: 330px;
+    width: 350px;
+  }
+}
+.failure-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.failure-img {
+  height: 200px;
+  width: 200px;
+}
+@media (min-width: 768px) {
+  .failure-img {
+    height: 300px;
+    width: 400px;
   }
 }
