@@ -2,13 +2,29 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  min-height: 240px;
+  height: 260px;
+  font-weight: 400;
 }
 .video-large-image {
   height: 220px;
-  width: 50%;
+  width: 400px;
+  border-radius: 6px;
 }
 .channel-name {
   font-weight: 600;
   font-size: 24px;
+}
+.trending-video-heading {
+  font-size: 18px;
+  font-weight: 500;
+}
+.video-image-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.trending-video-channel-name {
+  font-size: 12px;
+  font-weight: 400;
+  color: #94a3b8;
 }

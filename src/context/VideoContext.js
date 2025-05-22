@@ -5,6 +5,7 @@ const VideoContext = React.createContext({
   onChangeSaveVideo: () => {},
   removeAllSavedVideos: () => {},
   toggleTheme: () => {},
+  isDarkMode: false,
 })
 
 export default VideoContext

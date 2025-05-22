@@ -4,14 +4,8 @@ import './index.css'
 
 const VideoLargeImageCard = props => {
   const {videoDetails} = props
-  const {
-    id,
-    channel,
-    title,
-    thumbnailUrl,
-    viewCount,
-    publishedAt,
-  } = videoDetails
+  const {id, channel, title, thumbnailUrl, viewCount, publishedAt} =
+    videoDetails
   const {name, profileImageUrl} = channel
   return (
     <>
@@ -23,14 +17,9 @@ const VideoLargeImageCard = props => {
             className="video-large-image"
           />
           <div className="video-image-content-container">
-            <img
-              src={profileImageUrl}
-              alt="channel logo"
-              className="channel-logo"
-            />
             <div className="video-details">
-              <p className="video-heading">{title}</p>
-              <p className="channel-name">{name}</p>
+              <p className="trending-video-heading">{title}</p>
+              <p className="trending-video-channel-name">{name}</p>
               <div className="views-and-date-container-card">
                 <p className="views">{viewCount} views</p>
                 <p className="ago-years">{publishedAt}</p>

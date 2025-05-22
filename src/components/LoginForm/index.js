@@ -68,61 +68,61 @@ class LoginForm extends Component {
     console.log(passwordType)
 
     if (jwtToken !== undefined) {
-      return <Redirect to="/" />
+      return <Redirect to='/' />
     }
 
     return (
-      <div className="login-page-container">
-        <form className="login-form-container" onSubmit={this.verifyUserData}>
+      <div className='login-page-container'>
+        <form className='login-form-container' onSubmit={this.verifyUserData}>
           <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            alt="website logo"
-            className="website-logo"
+            src='https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+            alt='website logo'
+            className='website-logo'
           />
-          <div className="input-container">
-            <label htmlFor="userName" className="input-label">
+          <div className='input-container'>
+            <label htmlFor='userName' className='input-label'>
               USERNAME
             </label>
             <input
-              className="input-element"
+              className='input-element'
               value={username}
-              type="text"
-              id="userName"
-              placeholder="Username"
+              type='text'
+              id='userName'
+              placeholder='Username'
               onChange={this.onChangeUsername}
             />
           </div>
-          <div className="input-container">
-            <label htmlFor="userPassword" className="input-label">
+          <div className='input-container'>
+            <label htmlFor='userPassword' className='input-label'>
               PASSWORD
             </label>
             <input
-              className="input-element"
+              className='input-element'
               value={password}
-              id="userPassword"
+              id='userPassword'
               type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
+              placeholder='Password'
               onChange={this.onChangePassword}
             />
           </div>
-          <div className="input-show-password-container">
+          <div className='input-show-password-container'>
             <input
-              className="input-element"
+              className='input-element'
               value={password}
-              id="showPassword"
-              type="checkbox"
-              placeholder="Password"
+              id='showPassword'
+              type='checkbox'
+              placeholder='Password'
               onClick={this.onClickedShowPassword}
             />
-            <label htmlFor="showPassword" className="input-label">
+            <label htmlFor='showPassword' className='input-label'>
               Show password
             </label>
           </div>
 
-          <button className="login-button" type="submit">
+          <button className='login-button' type='submit'>
             Login
           </button>
-          {showSubmitError && <p className="error-message">*{errorMsg}</p>}
+          {showSubmitError && <p className='error-message'>*{errorMsg}</p>}
         </form>
       </div>
     )

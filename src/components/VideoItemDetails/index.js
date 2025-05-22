@@ -27,8 +27,9 @@ class VideoItemDetails extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     videoItemDetails: [],
-    savedVideosList: [],
-    showSaveText: 'Save',
+    isVideoLiked: false,
+    isVideoDisLiked: false,
+    isSaved: false,
   }
 
   componentDidMount() {
@@ -60,7 +61,7 @@ class VideoItemDetails extends Component {
     const {params} = match
     const {id} = params
 
-    console.log(formatDistanceToNow(new Date(2021, 8, 20)))
+    console.log(formatDistanceToNow(new Date()))
     // console.log(id)
 
     this.setState({
@@ -83,6 +84,7 @@ class VideoItemDetails extends Component {
     // console.log(jsonData)
 
     if (response.ok) {
+      console.log(updatedData)
       this.setState({
         apiStatus: apiStatusConstants.success,
         videoItemDetails: updatedData,
@@ -94,25 +96,30 @@ class VideoItemDetails extends Component {
     }
   }
 
-  onClickedSaveVideo = onChangeSaveVideo => {
-    const {videoItemDetails} = this.state
-    const {videoDetails} = videoItemDetails
+  onClickedDislike = (updateVideoReaction, videoDetails) => {
+    console.log('clicked on dislike btn')
+    this.setState(prevState => ({
+      isVideoDisLiked: !prevState.isVideoDisLiked,
+      isVideoLiked: false,
+    }))
+    updateVideoReaction(videoDetails)
+  }
 
-    this.setState(prevState => {
-      const isSaved = prevState.savedVideosList.some(
-        video => video.id === videoDetails.id,
-      )
+  onClickedLike = (updateVideoReaction, videoDetails) => {
+    console.log('clicked on like btn')
+    this.setState(prevState => ({
+      isVideoLiked: !prevState.isVideoLiked,
+      isVideoDisLiked: false,
+    }))
+    updateVideoReaction(videoDetails)
+  }
 
-      return {
-        savedVideosList: isSaved
-          ? prevState.savedVideosList.filter(
-              video => video.id !== videoDetails.id,
-            )
-          : [...prevState.savedVideosList, videoDetails],
-        showSaveText: isSaved ? 'Save' : 'Saved',
-      }
-    })
-
+  onClickedSaveVideo = (
+    onChangeSaveVideo,
+    isVideoAlreadySaved,
+    videoDetails,
+  ) => {
+    this.setState({isSaved: !isVideoAlreadySaved})
     onChangeSaveVideo(videoDetails)
   }
 
@@ -144,13 +151,31 @@ class VideoItemDetails extends Component {
   )
 
   renderSuccessView = () => {
-    const {videoItemDetails, showSaveText} = this.state
+    const {videoItemDetails, isVideoDisLiked, isVideoLiked, isSaved} =
+      this.state
+
+    const likedBtnClass = isVideoLiked
+      ? 'video-reaction-btn reaction-clicked'
+      : 'video-reaction-btn'
+    const dislikedBtnClass = isVideoDisLiked
+      ? 'video-reaction-btn reaction-clicked'
+      : 'video-reaction-btn'
+    const likedIconClass = isVideoLiked
+      ? 'video-reaction-icon reaction-clicked'
+      : 'video-reaction-icon '
+
+    const dislikedIconClass = isVideoDisLiked
+      ? 'video-reaction-icon reaction-clicked'
+      : 'video-reaction-icon '
+
     return (
       <VideoContext.Consumer>
         {value => {
-          const {onChangeSaveVideo} = value
+          const {onChangeSaveVideo, savedVideosList, updateVideoReaction} =
+            value
           const {videoDetails} = videoItemDetails
           const {
+            id,
             title,
             videoUrl,
             channel,
@@ -158,6 +183,18 @@ class VideoItemDetails extends Component {
             description,
             publishedAt,
           } = videoDetails
+
+          const isVideoAlreadySaved = savedVideosList.some(
+            video => video.id === id,
+          )
+          const saveIconClass = isVideoAlreadySaved
+            ? 'video-reaction-icon reaction-clicked'
+            : 'video-reaction-icon'
+          const saveBtnClass = isVideoAlreadySaved
+            ? 'video-reaction-btn reaction-clicked'
+            : 'video-reaction-btn'
+          const showSaveText = isVideoAlreadySaved ? 'Saved' : 'Save'
+
           const {name, profileImageUrl, subscriberCount} = channel
 
           return (
@@ -176,18 +213,44 @@ class VideoItemDetails extends Component {
                     <p className="ago-years">{publishedAt} years</p>
                   </div>
                   <div className="video-buttons-container">
-                    <button type="button" className="video-reaction-btn">
-                      <BiLike className="video-reaction-icon" /> Like
-                    </button>
-                    <button type="button" className="video-reaction-btn">
-                      <BiDislike className="video-reaction-icon" /> Dislike
+                    <button
+                      type="button"
+                      className={likedBtnClass}
+                      onClick={() =>
+                        this.onClickedLike(updateVideoReaction, {
+                          ...videoDetails,
+                          isLiked: isVideoLiked,
+                          isDisLiked: isVideoDisLiked,
+                        })
+                      }
+                    >
+                      <BiLike className={likedIconClass} /> Like
                     </button>
                     <button
                       type="button"
-                      className="video-reaction-btn"
-                      onClick={() => this.onClickedSaveVideo(onChangeSaveVideo)}
+                      className={dislikedBtnClass}
+                      onClick={() =>
+                        this.onClickedDislike(updateVideoReaction, {
+                          ...videoDetails,
+                          isLiked: isVideoLiked,
+                          isDisLiked: isVideoDisLiked,
+                        })
+                      }
                     >
-                      <FaSave className="video-reaction-icon" /> {showSaveText}
+                      <BiDislike className={dislikedIconClass} /> Dislike
+                    </button>
+                    <button
+                      type="button"
+                      className={saveBtnClass}
+                      onClick={() =>
+                        this.onClickedSaveVideo(
+                          onChangeSaveVideo,
+                          isVideoAlreadySaved,
+                          videoDetails,
+                        )
+                      }
+                    >
+                      <FaSave className={saveIconClass} /> {showSaveText}
                     </button>
                   </div>
                   <div className="channel-details-container">
@@ -249,29 +312,3 @@ class VideoItemDetails extends Component {
 }
 
 export default VideoItemDetails
-
-// onClickedSaveVideo = () => {
-//   const {savedVideosList, videoItemDetails} = this.state
-//   const {videoDetails} = videoItemDetails
-//   const {id} = videoDetails
-//   const isVideoAlreadySaved = savedVideosList.find(
-//     eachVideo => eachVideo.id === id,
-//   )
-//   console.log(videoDetails, typeof videoDetails, 'videos in')
-//   if (isVideoAlreadySaved) {
-//     const updatedVideoList = savedVideosList.filter(
-//       eachVideoObj => eachVideoObj.id !== id,
-//     )
-//     this.setState({
-//       savedVideosList: updatedVideoList,
-//       showSaveText: 'video Removed',
-//       isVideoSaved: false,
-//     })
-//   } else {
-//     this.setState(prevState => ({
-//       savedVideosList: [...prevState.savedVideosList, videoDetails],
-//       showSaveText: 'Video saved',
-//       isVideoSaved: true,
-//     }))
-//   }
-// }

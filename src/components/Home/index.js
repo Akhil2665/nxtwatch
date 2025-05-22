@@ -92,7 +92,7 @@ class Home extends Component {
   )
 
   renderSuccessView = () => {
-    const {videosList, showAd} = this.state
+    const {videosList, showAd, searchInput} = this.state
     const getVideoList = () =>
       videosList.map(videoDetails => (
         <VideoImageCard videoDetails={videoDetails} key={videoDetails.id} />
@@ -110,6 +110,7 @@ class Home extends Component {
             type="search"
             onChange={this.onChangeSearchInput}
             className="search-input"
+            value={searchInput}
           />
           <button
             type="button"

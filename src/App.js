@@ -16,10 +16,21 @@ import './App.css'
 class App extends Component {
   state = {
     savedVideosList: [],
+    isDarkMode: false,
   }
 
   removeAllSavedVideos = () => {
     this.setState({savedVideosList: []})
+  }
+
+  updateVideoReaction = reactionVideoDetails => {
+    const {savedVideosList} = this.state
+    const updatedList = savedVideosList.map(eachVideo =>
+      eachVideo.id === reactionVideoDetails.id
+        ? reactionVideoDetails
+        : eachVideo,
+    )
+    this.setState({savedVideosList: updatedList})
   }
 
   onChangeSaveVideo = videoDetails => {
@@ -41,15 +52,18 @@ class App extends Component {
   }
 
   render() {
-    const {savedVideosList} = this.state
+    const {savedVideosList, isDarkMode} = this.state
 
     return (
       <>
         <VideoContext.Provider
           value={{
             savedVideosList,
+            isDarkMode,
+            toggleTheme: this.toggleTheme,
             onChangeSaveVideo: this.onChangeSaveVideo,
             removeAllSavedVideos: this.removeAllSavedVideos,
+            updateVideoReaction: this.updateVideoReaction,
           }}
         >
           <Switch>

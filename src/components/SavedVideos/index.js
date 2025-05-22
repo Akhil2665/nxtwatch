@@ -57,7 +57,7 @@ const SavedVideos = () => (
               </button>
 
               <ul className="trending-video-list-container">
-                {savedVideosList.length !== 0
+                {savedVideosList?.length > 0
                   ? savedVideoListView
                   : noSavedVideosView()}
               </ul>
